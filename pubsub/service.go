@@ -23,6 +23,7 @@ import (
 	vkit "cloud.google.com/go/pubsub/apiv1"
 	"golang.org/x/net/context"
 	"google.golang.org/api/option"
+	"google.golang.org/appengine/log"
 	pb "google.golang.org/genproto/googleapis/pubsub/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -261,6 +262,7 @@ func (s *apiService) fetchMessages(ctx context.Context, subName string, maxMessa
 		}
 		msgs = append(msgs, msg)
 	}
+	log.Debugf(ctx, "fetchMessages response (%d messages): %v", len(msgs), resp)
 	return msgs, nil
 }
 
