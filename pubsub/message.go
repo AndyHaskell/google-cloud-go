@@ -49,6 +49,11 @@ type Message struct {
 	it *MessageIterator
 }
 
+// AckID gets the ack ID of a pubsub message.
+func (m *Message) AckID() string {
+	return m.ackID
+}
+
 func toMessage(resp *pb.ReceivedMessage) (*Message, error) {
 	if resp.Message == nil {
 		return &Message{ackID: resp.AckId}, nil
