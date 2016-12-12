@@ -54,6 +54,11 @@ func (m *Message) AckID() string {
 	return m.ackID
 }
 
+// CalledDone wraps the calledDone field on a pubsub message.
+func (m *Message) CalledDone() bool {
+	return m.calledDone
+}
+
 func toMessage(resp *pb.ReceivedMessage) (*Message, error) {
 	if resp.Message == nil {
 		return &Message{ackID: resp.AckId}, nil
